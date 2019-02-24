@@ -3,7 +3,7 @@ import { ValueField, ArrayValue, MapValue } from './models';
 /**
  * Converting Firestore data into values without value types.
  */
-const convert = (input: ValueField[]) => {
+const convert = (input: ValueField[] | ValueField) => {
 
     /**
      * Check if object is `ArrayValue`, `MapValue`
@@ -74,7 +74,7 @@ const convert = (input: ValueField[]) => {
         return valueField[key];
     }
 
-    return input.map(obj => extractObject(obj));
+    return (input instanceof Array) ? input.map(obj => extractObject(obj)) : extractObject(input);
 }
 
 export { convert }
