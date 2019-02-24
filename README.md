@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/dt/firestore-adapter.svg?style=flat-square)](https://img.shields.io/npm/dt/firestore-adapter.svg)
 [![npm version](https://img.shields.io/npm/v/firestore-adapter.svg?style=flat-square)](https://www.npmjs.com/package/firestore-adapter)
 
-When using the Google APIs `googleapis` to get data from Firestore, the data comes back in a typed format instead of what you would expect to receive.
+When using the Google APIs `googleapis` to get data from Firestore, the data comes back in a typed format instead of what you would expect to receive. They are typed with [these values](https://cloud.google.com/firestore/docs/reference/rest/v1/Value).
 
 ## Installation
 
