@@ -1,5 +1,5 @@
-import Adapter from './adapter';
+import { convert } from './adapter';
 import { data } from './resource';
 
-const adapter = new Adapter(data);
-console.log(JSON.stringify(adapter.convert()));
+const output = convert(data);
+console.log(JSON.stringify(output));
