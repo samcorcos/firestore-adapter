@@ -40,3 +40,14 @@ This package converts the data into a format that you'd expect. Namely:
 
 ## Usage 
 
+Import and pass the raw data to the function.
+
+```js
+const { convert } = require('firestore-adapter')
+
+const rawData = [{ city: { stringValue: 'WASHINGTON' } }]
+
+const result = convert(rawData)
+
+console.log(result) // => [{ city: 'WASHINGTON' }]
+```
