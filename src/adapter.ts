@@ -89,3 +89,5 @@ export class Adapter {
         return object.hasOwnProperty('mapValue');
     }
 }
+
+export default Adapter

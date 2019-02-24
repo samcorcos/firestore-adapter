@@ -1,12 +1,13 @@
 {
   "name": "firestore-adapter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Adapter to convert typed Firestore data into a standard format.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "npm run dev",
     "build": "tsc -p .",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "author": "",
   "license": "ISC",

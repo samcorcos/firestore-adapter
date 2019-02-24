@@ -1,4 +1,4 @@
-import { Adapter } from './adapter';
+import Adapter from './adapter';
 import { data } from './resource';
 
 const adapter = new Adapter(data);
