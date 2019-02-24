@@ -11,9 +11,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "implement-js": "0.0.26"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^11.9.5",
     "nodemon": "^1.18.10",
