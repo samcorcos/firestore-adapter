@@ -77,4 +77,4 @@ const convert = (input: ValueField[] | ValueField) => {
     return (input instanceof Array) ? input.map(obj => extractObject(obj)) : extractObject(input);
 }
 
-export { convert }
+export default convert

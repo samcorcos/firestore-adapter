@@ -4,7 +4,8 @@
 // const output = convert(data);
 // console.log(JSON.stringify(output));
 
-import { convert } from './adapter';
+import convert from './adapter';
+
 export {
   convert
 }
