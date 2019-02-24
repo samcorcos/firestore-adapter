@@ -1,5 +1,8 @@
 # Firestore Adapter
 
+[![npm version](https://img.shields.io/npm/dt/firestore-adapter.svg?style=flat-square)](https://img.shields.io/npm/dt/firestore-adapter.svg)
+[![npm version](https://img.shields.io/npm/v/firestore-adapter.svg?style=flat-square)](https://www.npmjs.com/package/firestore-adapter)
+
 When using the Google APIs `googleapis` to get data from Firestore, the data comes back in a typed format instead of what you would expect to receive.
 
 ## Installation
