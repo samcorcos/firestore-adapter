@@ -1,9 +1,9 @@
 import { ValueField, ArrayValue, MapValue } from './models';
 
 /**
- * Converting Firestore data into values without value types.
+ * Converting Firestore doc into values without value types.
  */
-const convert = (input: ValueField[] | ValueField) => {
+const docToData = (input: ValueField[] | ValueField) => {
 
     /**
      * Check if object is `ArrayValue`, `MapValue`
@@ -77,4 +77,56 @@ const convert = (input: ValueField[] | ValueField) => {
     return (input instanceof Array) ? input.map(obj => extractObject(obj)) : extractObject(input);
 }
 
-export default convert
+const dataToDoc = (input: Object) => {
+    const isNull = (value: any) => value === null
+    const isBoolean = (value: any) => typeof value === 'boolean'
+    const isNumber = (value: any) => typeof value === 'number' && isFinite(value)
+    const isDate = (value: any) => value instanceof Date
+    const isString = (value: any) => typeof value === 'string' || value instanceof String
+    const isArray = (value: any) => value && typeof value === 'object' && value.constructor === Array
+    const isObject = (value: any) => value && typeof value === 'object' && value.constructor === Object
+    const isReference = (value: string) => /projects\/\w+\/databases\/\w+\/documents\/.+/g.test(value)
+    const strIsNumber = (value: string) => /^\d+$/.test(value)
+
+    const checkValueType = (value: any) => {
+        if (isNull(value))
+            return { nullValue: value }
+        else if (isBoolean(value))
+            return { booleanValue: value }
+        else if (isDate(value))
+            return { timestampValue: value }
+        else if (isString(value)) {
+            if (isReference(value))
+                return { referenceValue: value }
+            else if ( strIsNumber(value) && Number(value) % 1 === 0)
+                return { integerValue: value }
+            return { stringValue: value }
+        }
+        else if (isNumber(value))
+            return { doubleValue: value }
+        else if (isArray(value)) {
+            const temp = {
+                arrayValue: {
+                    values: value.map((v: any) => {
+                        return checkValueType(v)
+                    })
+                }
+            }
+            return temp
+        }
+        else if (isObject(value)) {
+            if (value.hasOwnProperty('latitude') && value.hasOwnProperty('longitude'))
+                return { geoPointValue: value }
+            const temp: any = { mapValue: { fields: {} } }
+            Object.keys(value).forEach(key => {
+                temp.mapValue.fields[key] = checkValueType(value[key])
+            })
+            return temp
+        }
+        return
+    }
+
+    return checkValueType(input).mapValue
+}
+
+export default { docToData, dataToDoc }
