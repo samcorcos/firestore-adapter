@@ -1,6 +1,6 @@
 {
   "name": "firestore-adapter",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Adapter to convert typed Firestore data into a standard format.",
   "main": "lib/index.js",
   "scripts": {
